@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/read_A_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="读A卡"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/measure_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测温"
+        app:layout_constraintTop_toBottomOf="@id/read_A_card" />
+
+    <Button
+        android:id="@+id/measure_acc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加速度"
+        app:layout_constraintTop_toBottomOf="@id/measure_temp" />
+
+    <Button
+        android:id="@+id/measure_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="速度"
+        app:layout_constraintTop_toBottomOf="@id/measure_acc" />
+
+    <Button
+        android:id="@+id/measure_shift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="位移"
+        app:layout_constraintTop_toBottomOf="@id/measure_speed" />
+
+    <TextView
+        android:id="@+id/measure_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="测量结果显示"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/measure_shift" />
+</android.support.constraint.ConstraintLayout>
