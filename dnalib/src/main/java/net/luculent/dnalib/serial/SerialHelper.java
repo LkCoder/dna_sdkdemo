@@ -23,10 +23,9 @@ public class SerialHelper {
 
     private SerialHelper() {
         try {
-            DeviceControl var1 = new DeviceControl(actual_path);
-            this.deviceControl = var1;
-        } catch (Exception var2) {
-            var2.printStackTrace();
+            deviceControl = new DeviceControl(actual_path);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         this.cmdManager = new CmdManager(this.serialPort);
