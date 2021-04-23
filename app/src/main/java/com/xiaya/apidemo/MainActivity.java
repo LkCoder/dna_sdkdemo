@@ -2,12 +2,15 @@ package com.xiaya.apidemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.luculent.dnalib.card.CardHelper;
 import net.luculent.dnalib.card.MifareCard;
+import net.luculent.dnalib.data.ShakeDataDecode;
+import net.luculent.dnalib.data.TemperatureDataDecode;
 import net.luculent.dnalib.serial.ICmd;
 import net.luculent.dnalib.serial.SerialHelper;
 
@@ -84,6 +87,15 @@ public class MainActivity extends AppCompatActivity implements SerialHelper.OnDa
 
     @Override
     public void onDataReceived(String result) {
-        resultTxt.setText(result);
+        if (TextUtils.isEmpty(result)) {
+            return;
+        }
+        if (result.startsWith("0120")) {//振动数据
+            ShakeDataDecode.ShakeData shakeData = ShakeDataDecode.Decode(result);
+            resultTxt.setText("mode：" + shakeData.mode + ", 频率：" + shakeData.freq + ", 结果：" + shakeData.value);
+        } else if (result.startsWith("0110")) {//温度数据
+            TemperatureDataDecode.TemperatureData_Laster temp = TemperatureDataDecode.Decode_Laser(result);
+            resultTxt.setText("温度：" + temp.targetTemp);
+        }
     }
 }

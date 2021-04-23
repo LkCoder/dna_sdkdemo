@@ -17,17 +17,17 @@ public class SerialHelper {
     static final String power_on = "-wdout93 1";
     static final String serial = "/dev/ttyMT3";
     static final int stopbit = 1;
-    private CmdManager cmdManager;
+    private final CmdManager cmdManager;
     private DeviceControl deviceControl;
-    private SerialPort serialPort = new SerialPort();
+    private final SerialPort serialPort;
 
     private SerialHelper() {
+        serialPort = new SerialPort();
         try {
             deviceControl = new DeviceControl(actual_path);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         this.cmdManager = new CmdManager(this.serialPort);
     }
 
@@ -98,7 +98,7 @@ public class SerialHelper {
         cmdManager.setReadThreadListener(listener);
     }
 
-    public void sendCmd(ICmd.CmdTyp cmdTyp) {
+    public synchronized void sendCmd(ICmd.CmdTyp cmdTyp) {
         cmdManager.sendCmd(cmdTyp);
     }
 

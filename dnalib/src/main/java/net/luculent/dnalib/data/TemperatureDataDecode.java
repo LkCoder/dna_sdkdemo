@@ -10,7 +10,7 @@ import net.luculent.dnalib.RadixConverter;
 
 public class TemperatureDataDecode {
 
-    public TemperatureDataDecode.TemperatureData_Laster Decode_Laser(String result) {
+    public static TemperatureDataDecode.TemperatureData_Laster Decode_Laser(String result) {
         TemperatureDataDecode.TemperatureData_Laster dataLaster = null;
         if (result.length() == 22) {
             dataLaster = new TemperatureDataDecode.TemperatureData_Laster();

@@ -38,6 +38,9 @@ public class CmdManager {
             Logger.log("send cmd = " + cmd);
             try {
                 this.mSerialPort.WriteSerialByte(this.mSerialPort.getFd(), DataConvertUtils.hexString2Bytes(cmd));
+                if (readThread != null) {
+                    readThread.unlock();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

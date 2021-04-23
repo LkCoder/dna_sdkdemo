@@ -9,11 +9,11 @@ import net.luculent.dnalib.RadixConverter;
 
 public class ShakeDataDecode {
 
-    private int getLength(int len) {
+    private static int getLength(int len) {
         return 1024 << len - 1;
     }
 
-    public ShakeDataDecode.ShakeData Decode(String result) {
+    public static ShakeDataDecode.ShakeData Decode(String result) {
         ShakeDataDecode.ShakeData data = null;
         try {
             data = new ShakeData();
@@ -22,7 +22,7 @@ public class ShakeDataDecode {
             data.freq = Integer.parseInt(result.substring(6, 8), 16);
             int dataLength = Integer.parseInt(result.substring(10, 12), 16);
             data.dataLength = dataLength;
-            dataLength = this.getLength(dataLength) * 4;
+            dataLength = getLength(dataLength) * 4;
             data.isOverRun = Integer.parseInt(result.substring(dataLength + 16 + 4, dataLength + 16 + 6), 16);
             data.dataType = Integer.parseInt(result.substring(8, 10), 16);
             data.valString = result.substring(dataLength + 16, dataLength + 16 + 4);
